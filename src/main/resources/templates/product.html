@@ -1,0 +1,67 @@
+<!DOCTYPE>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <link rel='stylesheet' type='text/css' th:href='@{/themes/styles.css}' media='screen'/>
+    <title>Product</title>
+    <script>
+        $(document).ready(function(){
+            $('.updateProduct').click(function(){
+                var id = $(this).parents("tr").find("td[name=id]").text();
+                var name = $(this).parents("tr").find("input[name=name]").val();
+                var price = $(this).parents("tr").find("input[name=price]").val();
+                var quantity = $(this).parents("tr").find("input[name=quantity]").val();
+                $.ajax({
+                    url : 'update',
+                    type : 'post',
+                    data:{id:id,name:name,price:price,quantity:quantity},
+                    success : function(result) {
+                        alert(result);
+                        location.reload();
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div id='container'>
+    <div th:replace='~{commons :: header}'/>
+    <div id='mainBody' class="mainProduct">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th class="th1" colspan="">商品名</th>
+                <th class="th2">价格</th>
+                <th class="th3">数量</th>
+                <th class="th4">更新操作</th>
+                <th class="th5">删除操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  th:each="item,status:${productList}" class="trInput">
+                <td th:text="${item.id}" name="id"></td>
+                <td>
+                    <input type="text" name='name' th:value='${item.name}'>
+                </td>
+                <td>
+                    <input type="text" name='price' th:value='${item.price}'>
+                </td>
+                <td>
+                    <input type="text" name='quantity' th:value='${item.quantity}'>
+                </td>
+                <td>
+                    <button class="updateProduct">更新</button>
+                </td>
+                <td>删除</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div th:replace='~{commons :: footer}'/>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <link rel='stylesheet' type='text/css' th:href='@{/themes/styles.css}' media='screen'/>
+    <title>addProduct</title>
+
+</head>
+<body>
+<div id='container'>
+    <div th:replace='~{commons :: header}'/>
+    <div id='mainBody'>
+
+        <form class='login_adduser_form' method='post' action='addProduct'>
+
+            <p th:if="${error_name}" class="error"><span th:text="${error_name}"/></p>
+            <p><span>商品名</span><input type='text' name='itemName' th:value='${name}' /></p>
+
+            <p th:if="${error_price}" class="error"><span th:text="${error_price}"/></p>
+            <p><span>价格</span><input type='text' name='price' th:value='${callPrice}' /></p>
+
+            <p th:if="${error_quantity}" class="error"><span th:text="${error_quantity}"/></p>
+            <p><span>数量</span><input type='text' name='quantity' th:value='${callQuantity}' /></p>
+
+            <p th:if="${error_descriptions}" class="error"><span th:text="${error_descriptions}"/></p>
+            <p><span>商品描述</span><input type='text' name='descriptions' value='' /></p>
+
+            <p><input name='submit' type='submit' value='提交' /></p>
+
+        </form>
+
+    </div>
+    <div th:replace='~{commons :: footer}'/>
+</div>
+</body>
+</html>

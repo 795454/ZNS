@@ -1,0 +1,24 @@
+<!DOCTYPE>
+<html lang='en' xmlns:http='http://www.thymeleaf.org'>
+<head>
+    <meta charset='UTF-8'>
+    <link rel='stylesheet' type='text/css' th:href='@{/themes/styles.css}' media='screen'/>
+    <title>Login</title>
+</head>
+<body>
+<div id='container'>
+    <div th:replace='~{commons :: header}'/>
+    <div id='mainBody'>
+
+        <form class='login_adduser_form' method='post' action='login'>
+            <p><span>用户名</span><input type='text' name='username' th:value='${name}' /></p>
+            <p><span>密码</span><input type='password' name='password' value='' /></p>
+            <p><input name='submit' type='submit' value='登录' /></p>
+            <p class="error_login" th:if="${error != null}" th:text="${error}"></p>
+        </form>
+
+    </div>
+    <div th:replace='~{commons :: footer}'/>
+</div>
+</body>
+</html>
